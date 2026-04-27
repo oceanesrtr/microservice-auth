@@ -22,11 +22,7 @@ public class CorsConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins(
-                                "http://localhost:4200",
-                                "https://lokaquebec.web.app",
-                                "https://lokaquebec.firebaseapp.com"
-                        )
+                        .allowedOrigins("http://localhost:4200", "https://lokaquebec.web.app", "https://angularv3.netlify.app" )
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*")
                         .allowCredentials(true);
