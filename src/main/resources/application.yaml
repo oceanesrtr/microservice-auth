@@ -12,14 +12,14 @@ spring:
       password: none
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/auth_service_db
-    username: postgres
-    password: 1234
+    url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/auth_service_db}
+    username: ${DATABASE_USERNAME:postgres}
+    password: ${DATABASE_PASSWORD:1234}
     driver-class-name: org.postgresql.Driver
 
   jpa:
     hibernate:
-      ddl-auto: none
+      ddl-auto: ${JPA_DDL_AUTO:none}
     show-sql: true
     open-in-view: false
     properties:
@@ -31,9 +31,9 @@ spring:
     change-log: classpath:db/changelog/db.changelog-master.xml
 
 server:
-  port: 8081
+  port: ${PORT:8081}
 
 app:
   jwt:
-    secret: "UneCleSecreteTresLonguePourSignerLeJwtEtLaValiderAuthService2026"
-    expiration: 86400000
+    secret: ${JWT_SECRET:UneCleSecreteTresLonguePourSignerLeJwtEtLaValiderAuthService2026}
+    expiration: ${JWT_EXPIRATION:86400000}
