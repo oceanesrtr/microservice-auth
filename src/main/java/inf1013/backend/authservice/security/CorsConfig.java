@@ -10,19 +10,21 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.util.List;
 
-/**
- * Configuration CORS pour autoriser le frontend Angular
- * à appeler ce backend Spring Boot.
- */
 @Configuration
 public class CorsConfig {
+
     @Bean
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins("http://localhost:4200", "https://lokaquebec.web.app", "https://angularv3.netlify.app" )
+                        .allowedOriginPatterns(
+                                "http://localhost:*",
+                                "https://*.netlify.app",
+                                "https://lokaquebec.web.app",
+                                "https://lokaquebec.firebaseapp.com"
+                        )
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*")
                         .allowCredentials(true);
