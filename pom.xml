@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Fichier Maven principal du projet.
+    Il permet de gérer :
+    - la version de Spring Boot
+    - les dépendances
+    - la compilation
+    - le lancement de l'application
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<!-- Version du modèle Maven -->
+	<modelVersion>4.0.0</modelVersion>
+
+	<!--
+        Parent Spring Boot :
+        il gère automatiquement des versions compatibles entre les dépendances Spring
+    -->
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>4.0.5</version>
+		<relativePath/>
+	</parent>
+
+	<!-- Informations générales du projet -->
+	<groupId>inf1013</groupId>
+	<artifactId>backend</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>backend</name>
+	<description>Microservice Auth avec Spring Boot, JWT, Liquibase et PostgreSQL</description>
+
+	<!-- Propriétés globales -->
+	<properties>
+		<!-- Version Java utilisée pour compiler le projet -->
+		<java.version>17</java.version>
+
+		<!-- Version de la bibliothèque JWT -->
+		<jjwt.version>0.13.0</jjwt.version>
+	</properties>
+
+	<dependencies>
+
+		<!--
+            Spring Web :
+            permet de créer des API REST avec @RestController, @GetMapping, @PostMapping, etc.
+        -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<!--
+            Spring Data JPA :
+            permet de manipuler la base de données avec les Repository et les entités JPA
+        -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+
+		<!--
+            Spring Security :
+            nécessaire pour encoder les mots de passe
+            et sécuriser l'application
+        -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+
+		<!--
+            Validation :
+            permet d'utiliser @NotBlank, @Email, @Size, etc. dans les DTO
+        -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-validation</artifactId>
+		</dependency>
+
+		<!--
+            Liquibase :
+            permet de gérer les migrations de base de données
+        -->
+		<dependency>
+			<groupId>org.liquibase</groupId>
+			<artifactId>liquibase-core</artifactId>
+		</dependency>
+
+		<!--
+            Driver PostgreSQL :
+            permet à l'application Java de se connecter à PostgreSQL
+        -->
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
+		<!--
+            Lombok :
+            évite d’écrire manuellement les getters, setters, constructeurs, builder, etc.
+        -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
+
+		<!--
+            JWT API :
+            fournit les classes principales pour créer et lire les tokens JWT
+        -->
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-api</artifactId>
+			<version>${jjwt.version}</version>
+		</dependency>
+
+		<!--
+            Implémentation JWT au runtime
+        -->
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-impl</artifactId>
+			<version>${jjwt.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+
+		<!--
+            Intégration Jackson pour sérialiser/désérialiser les données JWT
+        -->
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-jackson</artifactId>
+			<version>${jjwt.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+
+		<!--
+            Dépendances de test
+        -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-liquibase</artifactId>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<!--
+                Plugin Spring Boot :
+                permet de lancer l'application avec mvn spring-boot:run
+                et de générer le jar exécutable
+            -->
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
